@@ -1,6 +1,8 @@
 package com.acme.todolist.application.port.in;
 
-public class AddTodoItem {
+import com.acme.todolist.domain.TodoItem;
 
-	void addTodoItem(TodoItem)
+public interface AddTodoItem {
+
+	void addTodoItem(TodoItem item);
 }
