@@ -142,3 +142,89 @@ On teste chaque adapteur un à un pour voir si les résultats sont conformes à 
 - Pour tester l'adapter REST, utiliser l'annotation `@WebMvcTest(controllers = TodoListController.class)`
 - Voir cette https://spring.io/guides/gs/testing-web/[documentation]
 =====
+
+Exercice 3 - Injection de dépendance
+
+●Écrire le pseudo code d'injection entre les classes suivantes sachant que :
+◦ClientMail a besoin d'un ServerMail
+◦ClientMail a besoin d'un MessageFormatter (singleton) 
+◦ServerMail a besoin d'une Connection
+
+
+●Le faire avec chacune des trois types d'injection.
+
+Par constructeur :
+
+	class ClientMail {
+		ServerMail server ;
+		MessageFormatter formatter ;
+
+		@Inject
+		public ClientMail (ServerMail server,MessageFormatter formatter){
+			 this.server= server;
+			 this.formatter = formatter;
+		}
+	}
+
+	class ServerMail{
+	    Connexion connexion ;
+	    @Inject
+	    public ServerMail(Connexion connexion){
+		this.connexion = connexion ;
+	    }
+	}
+
+
+Par setter :
+
+	class ClientMail {
+		ServerMail server ;
+		MessageFormatter formatter ;
+		public ClientMail (){}
+
+		@Inject
+		public void setServer(ServerMail Server){
+	 		this.server = server;
+		}
+		
+		@Inject
+		public void setFormatter(MessageFormatter formatter){
+		 	this.formatter = formatter;
+		}
+	}
+
+	class ServerMail{
+	    Connexion connexion ;
+	    
+		public ServerMail(){}
+	    
+		@Inject
+		public void setConnexion (Connexion connexion){
+		    this.connexion =  connexion;
+		}
+	}
+
+
+
+
+Par attribut :
+
+	class ClientMail {
+		@Inject
+		ServerMail server ;
+		@Inject
+		MessageFormatter formatter ;
+	}	
+
+	class ServerMail {
+		@Inject
+		Connexion connexion;
+	}
+
+
+
+
+●MessageFormatter manipule des beans Message sans dépendances. Doit-on injecter l'objet Message ?
+
+Non il ne faut pas faire d’injection pour les beans.
+
