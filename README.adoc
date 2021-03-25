@@ -161,17 +161,18 @@ Par constructeur :
 
 		@Inject
 		public ClientMail (ServerMail server,MessageFormatter formatter){
-			 this.server= server;
-			 this.formatter = formatter;
+			this.server= server;
+			this.formatter = formatter;
 		}
 	}
 
 	class ServerMail{
-	    Connexion connexion ;
-	    @Inject
-	    public ServerMail(Connexion connexion){
-		this.connexion = connexion ;
-	    }
+		Connexion connexion ;
+		
+		@Inject
+		public ServerMail(Connexion connexion){
+			this.connexion = connexion ;
+		}
 	}
 
 
@@ -184,23 +185,23 @@ Par setter :
 
 		@Inject
 		public void setServer(ServerMail Server){
-	 		this.server = server;
+			this.server = server;
 		}
-		
+
 		@Inject
 		public void setFormatter(MessageFormatter formatter){
-		 	this.formatter = formatter;
+			this.formatter = formatter;
 		}
 	}
 
 	class ServerMail{
-	    Connexion connexion ;
-	    
+		Connexion connexion ;
+
 		public ServerMail(){}
-	    
+
 		@Inject
 		public void setConnexion (Connexion connexion){
-		    this.connexion =  connexion;
+		this.connexion =  connexion;
 		}
 	}
 
